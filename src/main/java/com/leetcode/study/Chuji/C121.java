@@ -8,8 +8,8 @@ public class C121 {
     }
     public int maxProfit(int[] prices) {
         //6 7 8 5 8 5 4 9 2 1 4 3
-        int max=0;
-        if(prices.length<3){
+
+        /*if(prices.length<3){
             max=prices[0]<prices[1]?(prices[1]-prices[0]):0;
         }else{
             for(int i=0;i<prices.length-1;i++){
@@ -22,6 +22,16 @@ public class C121 {
                     }
                     j++;
                 }
+            }
+        }*/
+        int max=0;
+        int min=Integer.MAX_VALUE;
+        for(int i=0;i<prices.length;i++){
+
+            if(prices[i]<min){
+                min=prices[i];
+            }else{
+                max=(prices[i]-min)>max?(prices[i]-min):max;
             }
         }
         return max;
