@@ -2,24 +2,32 @@ package com.leetcode.study.Chuji;
 
 public class C203 {
     public ListNode removeElements(ListNode head, int val) {
-        ListNode cur =new ListNode(0),pre=cur;
-        //cur.next=head;
+        ListNode res=new ListNode(0),pre=res;
         while (head!=null){
             if(head.val==val){
                 head=head.next;
+            }else{
+                if(head!=null){
+                    ListNode node=new ListNode(head.val);
+                    pre.next=node;
+                    pre=node;
+                }else{
+
+                    break;
+                }
+                head=head.next;
             }
-            ListNode node=new ListNode(head.val);
-            pre.next=node;
-            pre=node;
         }
-        return cur;
+        pre.next=null;
+        return  res.next;
 
     }
+
     class ListNode {
-      int val;
-      ListNode next;
-      ListNode() {}
-      ListNode(int val) { this.val = val; }
-      ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-  }
+     int val;
+     ListNode next;
+     ListNode() {}
+     ListNode(int val) { this.val = val; }
+     ListNode(int val, ListNode next) { this.val = val; this.next = next; }
+     }
 }
