@@ -2,6 +2,7 @@ package com.leetcode.study.Chuji;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class C1218 {
     //最长定差子序列
@@ -16,7 +17,14 @@ public class C1218 {
         System.out.println(c1218.longestSubsequence(arr,-247));
     }
     public  int longestSubsequence(int[] arr, int difference) {
-        HashMap<Integer,Node> map=new HashMap<>();
+        int ans = 0;
+        Map<Integer, Integer> dp = new HashMap<Integer, Integer>();
+        for (int v : arr) {
+            dp.put(v, dp.getOrDefault(v - difference, 0) + 1);
+            ans = Math.max(ans, dp.get(v));
+        }
+        return ans;
+        /*HashMap<Integer,Node> map=new HashMap<>();
         int max=1;
         if(difference!=0){
             for(int i=0;i<arr.length;i++){
@@ -48,7 +56,7 @@ public class C1218 {
 
 
 
-        return max;
+        return max;*/
     }
     class Node {
         int val;
