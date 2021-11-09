@@ -14,6 +14,9 @@ public class C144 {
      */
     public List<Integer> preorderTraversal2(TreeNode root) {
         List<Integer> list=new ArrayList<>();
+        if(root==null){
+            return list;
+        }
         Stack<TreeNode> stack=new Stack<>();
         stack.push(root);
         while (!stack.empty()){
@@ -48,15 +51,15 @@ public class C144 {
         preorder(node.right,list);
     }
     class TreeNode {
-     int val;
-     TreeNode left;
-     TreeNode right;
-     TreeNode() {}
-     TreeNode(int val) { this.val = val; }
-     TreeNode(int val, TreeNode left, TreeNode right) {
-         this.val = val;
-         this.left = left;
-         this.right = right;
-     }
- }
+            int val;
+            TreeNode left;
+            TreeNode right;
+            TreeNode() {}
+            TreeNode(int val) { this.val = val; }
+            TreeNode(int val, TreeNode left, TreeNode right) {
+                this.val = val;
+                this.left = left;
+                this.right = right;
+            }
+    }
 }
