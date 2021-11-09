@@ -18,7 +18,6 @@ public class C94 {
             return list;
         }
         TreeNode node=root;
-
         while (node!=null||!stack.empty()){
             if(node!=null){
                 stack.push(node);
@@ -28,7 +27,6 @@ public class C94 {
                 list.add(node.val);
                 node=node.right;
             }
-
         }
         return list;
     }
