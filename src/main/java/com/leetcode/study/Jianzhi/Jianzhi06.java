@@ -1,27 +1,27 @@
 package com.leetcode.study.Jianzhi;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
+import java.util.Stack;
 
 public class Jianzhi06 {
 
     public int[] reversePrint(ListNode head) {
-        LinkedList<Integer> list=new LinkedList<>();
-        while (head.next!=null){
-            list.addLast(head.val);
-            //list.addFirst(head.val);
+        /*LinkedList<Integer> list=new LinkedList<>();*/
+        Stack<Integer> stack=new Stack<>();
+        int i=0;
+        while (head!=null){
+            stack.push(head.val);
+            i++;
             head=head.next;
         }
-        int[] arr= new int[list.size()];
-
-        for(int i =0;i<arr.length;i++){
-            arr[i]=list.removeLast();
+        int[] arr= new int[i];
+        i=0;
+        while (!stack.empty()){
+            arr[i++]=stack.pop();
         }
         return arr;
     }
 }
-class ListNode {
-    int val;
-    ListNode next;
-    ListNode(int x) { val = x; }
- }
+
