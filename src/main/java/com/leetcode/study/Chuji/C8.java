@@ -93,11 +93,11 @@ public class C8 {
      */
     public static void main(String[] args) {
         C8 c8 = new C8();
-        System.out.println(c8.myAtoi2("00000-42a1234"));
+        System.out.println(c8.myAtoi("20000000000000000000"));
     }
-    public int myAtoi(String s) {
-        String res=myAtoi2(s);
-        Long l=Long.valueOf(res);
+    public int myAtoi(String str) {
+        //String res=myAtoi2(s);
+        /*Long l=Long.parseLong(res);
         Long min= Long.valueOf(Integer.MIN_VALUE);
         Long max=Long.valueOf(Integer.MAX_VALUE);
         if(l>max){
@@ -106,7 +106,28 @@ public class C8 {
             return Integer.MIN_VALUE;
         }else{
             return Integer.valueOf(res);
-        }
+        }*/
+
+            str = str.trim();
+            if (str.length() == 0) {
+                return 0;
+            }
+            if (!Character.isDigit(str.charAt(0))
+                    && str.charAt(0) != '-' && str.charAt(0) != '+'){
+                return 0;
+            }
+            int ans = 0;
+            boolean neg = str.charAt(0) == '-';
+            int i = !Character.isDigit(str.charAt(0)) ? 1 : 0;
+            while (i < str.length() && Character.isDigit(str.charAt(i))) {
+                int tmp = ((neg ? Integer.MIN_VALUE : Integer.MIN_VALUE + 1) + (str.charAt(i) - '0')) / 10;
+                if (tmp > ans) {
+                    return neg ? Integer.MIN_VALUE : Integer.MAX_VALUE;
+                }
+                ans = ans * 10 - (str.charAt(i++) - '0');
+            }
+            return neg ? ans : -ans;
+
     }
     /**
      * @param s
@@ -122,13 +143,19 @@ public class C8 {
                 if(star>=0){
                     end=i-1;
                     break;
+                }else{
+                    continue;
                 }
-            }else if(arr[i]=='-'||arr[i]=='+'){
+            }else
+            if(arr[i]=='-'||arr[i]=='+'){
                 if(fuhao<0){
-                    if(star>0){
+                    if(star>=0){
+                        //fuhao=i;
+                        end=i-1;
                         break;
+                    }else{
+                        fuhao=i;
                     }
-                    fuhao=i;
                 }else{
                     if(star<0){
                         break;
@@ -148,17 +175,32 @@ public class C8 {
                     end=i-1;
                 }
             }
+
         }
         if(end<0){
             end=arr.length-1;
         }
+        String a="";
+        //System.out.println("start="+star+",end="+end);
         if(star<0){
             return "0";
+        }else{
+            if(fuhao>=0){
+                a=String.valueOf(arr[fuhao]);
+            }
+            while (true){
+                if(arr[star]=='0'&&star!=end){
+                    star++;
+                }else {
+                    break;
+                }
+            }
         }
-        String a="";
-        if(fuhao>=0){
-            a=String.valueOf(arr[fuhao]);
+
+        if(star==end&&arr[star]=='0'){
+            return s.substring(star,end+1);
+        }else{
+            return a+s.substring(star,end+1);
         }
-        return a+s.substring(star,end+1);
     }
 }

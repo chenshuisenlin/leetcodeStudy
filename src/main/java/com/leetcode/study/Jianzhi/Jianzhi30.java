@@ -8,7 +8,7 @@ public class Jianzhi30 {
 class MinStack {
     LinkedList<Integer> A;
     LinkedList<Integer> minnum;
-    /** initialize your data structure here. */
+
     public MinStack() {
         A=new LinkedList<>();
         minnum=new LinkedList<>();
