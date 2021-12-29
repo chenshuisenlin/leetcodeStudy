@@ -4,6 +4,9 @@ import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
 
 public class BeanFactory {
+    /*
+    spring mybatis 中都要用到
+     */
     public static BaseService newInstanc(Class classFile){
         BaseService trueCicada= new Cicada();
         InvocationHandler prayingMantis = new PrayingMantis(trueCicada);
